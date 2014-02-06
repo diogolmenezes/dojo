@@ -7,11 +7,11 @@ require "test/unit"
 
 class CortadorDeFrase
     def cortar(frase, tamanho)
-        frase_cortada = frase
+        frase_cortada  = ""
 
         frase.split(" ").each do |palavra|
             if frase_cortada.length + palavra.length < tamanho
-                frase_cortada += palavra + " "
+                frase_cortada += palavra.length == 0 ? palavra : " " + palavra
             end
         end
 
