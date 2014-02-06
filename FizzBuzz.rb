@@ -25,38 +25,39 @@ end
 
 
 class BancoTest < Test::Unit::TestCase
+    def setup
+        @fizzBuzz = FizzBuzz.new
+    end
+
     def test_1_say_1
-        fizzBuzz = FizzBuzz.new
-        assert_equal(1, fizzBuzz.jogar(1))
+        assert_equal(1, @fizzBuzz.jogar(1))
     end
 
     def test_2_say_2
-        fizzBuzz = FizzBuzz.new
-        assert_equal(2, fizzBuzz.jogar(2))
+        assert_equal(2, @fizzBuzz.jogar(2))
     end
 
     def test_3_say_fizz
-        fizzBuzz = FizzBuzz.new
-        assert_equal("Fizz", fizzBuzz.jogar(3))
+        assert_equal("Fizz", @fizzBuzz.jogar(3))
     end
 
     def test_6_say_fizz
-        fizzBuzz = FizzBuzz.new
-        assert_equal("Fizz", fizzBuzz.jogar(6))
+        assert_equal("Fizz", @fizzBuzz.jogar(6))
     end
 
     def test_5_say_buzz
-        fizzBuzz = FizzBuzz.new
-        assert_equal("Buzz", fizzBuzz.jogar(5))
+        assert_equal("Buzz", @fizzBuzz.jogar(5))
     end
 
     def test_10_say_buzz
-        fizzBuzz = FizzBuzz.new
-        assert_equal("Buzz", fizzBuzz.jogar(10))
+        assert_equal("Buzz", @fizzBuzz.jogar(10))
     end
 
     def test_15_say_fizzbuzz
-        fizzBuzz = FizzBuzz.new
-        assert_equal("FizzBuzz", fizzBuzz.jogar(15))
+        assert_equal("FizzBuzz", @fizzBuzz.jogar(15))
+    end
+
+    def test_30_say_fizzbuzz
+        assert_equal("FizzBuzz", @fizzBuzz.jogar(30))
     end
 end
