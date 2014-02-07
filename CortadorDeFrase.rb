@@ -2,6 +2,9 @@
 # Escreva um programa em que dado uma frase e a quantidade de colunas que podem ser exibidas na tela, faça a quebra de linhas sem quebrar as palavras.
 # Por exemplo, se passarmos a frase "Um pequeno jabuti xereta viu dez cegonhas felizes." e pedirmos para ela ser exibida em 20 colunas, teremos como
 # resposta:
+# Um pequeno jabuti
+# xereta viu dez
+# cegonhas felizes.
 
 require "test/unit"
 
@@ -65,6 +68,10 @@ class CortadorDeFraseTest < Test::Unit::TestCase
 
     def test_corta_em_20
          assert_equal("Um pequeno jabuti \nxereta viu dez \ncegonhas felizes.", @cortador.cortar("Um pequeno jabuti xereta viu dez cegonhas felizes.", 20))
+    end
+
+    def test_palavra_grande
+         assert_equal("um \ninconstitucionalicimamente \nerrado", @cortador.cortar("um inconstitucionalicimamente errado", 11))
     end
 end
 
