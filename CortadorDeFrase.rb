@@ -7,15 +7,42 @@ require "test/unit"
 
 class CortadorDeFrase
     def cortar(frase, tamanho)
-        frase_cortada  = ""
+        frase_cortada   = ""
+        linha           = ""
+        contador        = 1;
+        totalDePalavras = frase.split(" ").length
 
         frase.split(" ").each do |palavra|
-            if frase_cortada.length + palavra.length < tamanho
-                frase_cortada += palavra.length == 0 ? palavra : " " + palavra
+
+            ultimaPalavra       = contador == totalDePalavras
+            ultrapassouOTamanho = linha.length + palavra.length + 1 < tamanho
+
+            if ultrapassouOTamanho
+
+                linha += ultimaPalavra ? palavra : palavra + " "
+
+                if ultimaPalavra
+                    frase_cortada += linha
+                end
+
+            else
+                existeLinha = linha != ""
+
+                if existeLinha
+                    frase_cortada +=  linha + "\n"
+                end
+
+                if ultimaPalavra
+                    frase_cortada += palavra
+                else
+                    linha = palavra + " "
+                end
             end
+
+            contador+= 1
         end
 
-        frase_cortada
+        frase_cortada == "" ? frase : frase_cortada
     end
 end
 
@@ -29,11 +56,15 @@ class CortadorDeFraseTest < Test::Unit::TestCase
     end
 
     def test_um_teste_feito_5_entao_escreve_um
-        assert_equal("um", @cortador.cortar("um teste feito", 5))
+        assert_equal("um \nteste \nfeito", @cortador.cortar("um teste feito", 5))
     end
 
     def test_um_teste_feito_11_entao_escreve_um_teste
-        assert_equal("um teste", @cortador.cortar("um teste feito", 11))
+         assert_equal("um teste \nfeito", @cortador.cortar("um teste feito", 11))
+    end
+
+    def test_corta_em_20
+         assert_equal("Um pequeno jabuti \nxereta viu dez \ncegonhas felizes.", @cortador.cortar("Um pequeno jabuti xereta viu dez cegonhas felizes.", 20))
     end
 end
 
