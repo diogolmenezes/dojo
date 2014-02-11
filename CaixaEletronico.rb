@@ -10,64 +10,58 @@
 # • Valor do Saque: R$ 80,00 – Resultado Esperado: Entregar 1 nota de R$50,00 1 nota de R$ 20,00 e 1 nota de R$ 10,00.
 require "test/unit"
 
-class Banco
+class CaixaEletronico
 
-    @@notas_disponiveis = [100, 50, 20, 10]
+    def initialize
+        @notas_disponiveis = [100, 50, 20, 10]
+    end
 
     def sacar(valor)
-
         notas = Array.new
 
-        
-        for nota_disponivel in @@notas_disponiveis
-            while valor > 0
-                if valor >= nota_disponivel
-                    valor -= empilhar_nota nota_disponivel, notas
+        if valor > 0
+            @notas_disponiveis.each do |nota_disponivel|
+                while valor >= nota_disponivel
+                    notas.push(nota_disponivel)
+                    valor -= nota_disponivel
                 end
             end
         end
-        
 
         return notas
     end
-
-    private
-        def empilhar_nota(nota, notas)
-            notas.push(nota)
-            return nota
-        end
 end
 
 class BancoTest < Test::Unit::TestCase
     def setup
-        @banco = Banco.new
+        @caixa = CaixaEletronico.new
     end
 
     def test_sacar_0_entao_0_notas
-        assert_equal([], @banco.sacar(0))
+        assert_equal([], @caixa.sacar(0))
     end
 
     def test_sacar_20_entao_retorna_1_nota_20
-        assert_equal([20], @banco.sacar(20))
+        assert_equal([20], @caixa.sacar(20))
     end
 
     def test_sacar_10_entao_retorna_1_nota_10
-        assert_equal([10], @banco.sacar(10))
+        assert_equal([10], @caixa.sacar(10))
     end
 
     def test_sacar_100_entao_retorna_nota_de_100
-        assert_equal([100], @banco.sacar(100))
+        assert_equal([100], @caixa.sacar(100))
     end
 
     def test_sacar_40_entao_retorna_2_nota_de_20
-        assert_equal([20,20], @banco.sacar(40))
+        assert_equal([20,20], @caixa.sacar(40))
     end
 
     def test_sacar_90_entao_retorna_1_nota_50_e_2_nota_de_20
-        assert_equal([50,20,20], @banco.sacar(90))
+        assert_equal([50,20,20], @caixa.sacar(90))
     end
 
     def test_sacar_200_entao_retorna_2_nota_100
-        assert_equal([100,100], @banco.sacar(200))
+        assert_equal([100,100], @caixa.sacar(200))
     end
 end
