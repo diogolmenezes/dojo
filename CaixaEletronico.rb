@@ -28,7 +28,7 @@ class CaixaEletronico
             end
         end
 
-        return notas
+        notas
     end
 end
 
