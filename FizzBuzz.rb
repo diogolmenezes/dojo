@@ -20,16 +20,8 @@ class FizzBuzz
     end
 
     def jogar(numeros)
-        resultado = Array.new
-
-        numeros.map { |n| resultado.push(self.falar(n)) }
-
-        # é o mesmo que:
-        # numeros.each do |numero|
-        #    resultado.push(self.falar(numero))
-        # end
-
-        resultado
+        numeros.map! { |n| self.falar(n) }
+        numeros
     end
 
     private
