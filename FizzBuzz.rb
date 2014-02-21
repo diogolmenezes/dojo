@@ -1,4 +1,4 @@
-# Problema:
+# Problema :
 # Imagine uma brincadeira onde crianças falam um número em ordem (1,2,3…).
 # Se o número for múltiplo de 3 então a criança deve dizer Fizz ao invés do número,
 # se o número for múltiplo de 5 então a criança deve dizer Buzz,

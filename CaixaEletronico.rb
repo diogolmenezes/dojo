@@ -57,6 +57,11 @@ class BancoTest < Test::Unit::TestCase
         assert_equal([20,20], @caixa.sacar(40))
     end
 
+
+    def test_sacar_60_entao_retorna_nota_de_50_nota_de_10
+        assert_equal([50,10], @caixa.sacar(60))
+    end
+
     def test_sacar_90_entao_retorna_1_nota_50_e_2_nota_de_20
         assert_equal([50,20,20], @caixa.sacar(90))
     end
