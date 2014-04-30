@@ -31,7 +31,6 @@
       if(!$valorPossivel)
         throw new Exception("Valor inválido.");
 
-
       foreach($this->notasDisponiveis as $nota)
       {
         while($nota <= $valor)
