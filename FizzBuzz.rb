@@ -21,7 +21,12 @@ class FizzBuzz
 
     def jogar(numeros)
         numeros.map! { |n| self.falar(n) }
-        numeros
+
+        #resultado = []
+        #numeros.each do |n|
+        #    resultado << self.falar(n)
+        #end
+        #resultado
     end
 
     private
